@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface CardRepository extends JpaRepository<CreditCard, Long> {
-    CreditCard findByName(String name);
     List<CreditCard> findAll();
+    CreditCard save(CreditCard creditCard);
 
 }
 
