@@ -1,17 +1,16 @@
 package com.project.developer.cpa.controller;
 
-import com.project.developer.cpa.exception.CpaException;
 import com.project.developer.cpa.model.CreditCard;
 import com.project.developer.cpa.service.CardService;
+import com.project.developer.cpa.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1")
@@ -19,23 +18,24 @@ public class CreditCardController {
 
     private final Logger log = LoggerFactory.getLogger(CreditCardController.class);
 
-    @Autowired
-    private CardService cardService;
+    private final CardService cardService;
 
     public CreditCardController(CardService cardService) {
         this.cardService = cardService;
     }
 
     @GetMapping("/getCards")
-    Collection<CreditCard> getCreditCards() {
-        return cardService.findAll();
+    @ResponseBody
+    public ResponseEntity<List<CreditCard>> getCreditCards() {
+        log.info("Get all cards from system: getCreditCards");
+        return new ResponseEntity(cardService.findAll(), HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    ResponseEntity<CreditCard> addCard(@RequestBody CreditCard creditCard) throws CpaException, URISyntaxException {
+    public ResponseEntity<CreditCard> addCard(@RequestBody CreditCard creditCard) throws Exception {
         log.info("Add new card to system: {}", creditCard);
         CreditCard result = cardService.saveCard(creditCard);
-        return ResponseEntity.created(new URI("/api/add/" + result.getId()))
+        return ResponseEntity.created(new URI(Constants.REDIRECT_URI + result.getId()))
                 .body(result);
     }
 }

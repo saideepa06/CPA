@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "38414020-5b2a-4bae-b358-70572f3e077c",
+		"name": "CPA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ADD valid Card",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"creditCardNumber\": 4003600000000014,\n    \"userName\": \"Deepa\",\n    \"cardLimit\": 1000000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"add"
+					]
+				},
+				"description": "Add a new credit card"
+			},
+			"response": [
+				{
+					"name": "ADD",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"creditCardNumber\": 4003600000000014,\n    \"userName\": \"Deepa\",\n    \"cardLimit\": 1000000\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"add"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 22 May 2021 13:46:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errors\": [\n        \"There was an unexpected error processing the request: com.project.developer.cpa.exception.CpaInternalException: Please Enter a valid Credit Card Details\"\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET all saved cards",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getCards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getCards"
+					]
+				},
+				"description": "Add a new credit card"
+			},
+			"response": []
+		}
+	]
+}

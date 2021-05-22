@@ -6,6 +6,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 
 @Data
 @NoArgsConstructor
@@ -15,14 +16,14 @@ import javax.persistence.*;
 public class CreditCard {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NonNull
     private Long creditCardNumber;
     @NonNull
     private String userName;
     @NonNull
-    private Long limit;
+    private Long cardLimit;
     @NonNull
     private Long balance;
 

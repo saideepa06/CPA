@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface CardRepository extends JpaRepository<CreditCard, Long> {
     List<CreditCard> findAll();
+
     CreditCard save(CreditCard creditCard);
 
 }

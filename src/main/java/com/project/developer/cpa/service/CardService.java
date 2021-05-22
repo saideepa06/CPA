@@ -1,45 +1,56 @@
 package com.project.developer.cpa.service;
 
+import com.project.developer.cpa.exception.CpaInternalException;
 import com.project.developer.cpa.model.CreditCard;
 import com.project.developer.cpa.repository.CardRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CardService{
+public class CardService {
 
-    @Autowired
-    private CardRepository cardRepository;
+    private final Logger log = LoggerFactory.getLogger(CardService.class);
+
+    private final CardRepository cardRepository;
 
     public CardService(CardRepository cardRepository) {
         this.cardRepository = cardRepository;
     }
 
-    public List<CreditCard> findAll(){
+    public List<CreditCard> findAll() {
+        log.info("Get all cards from system: findAll");
         return cardRepository.findAll();
     }
 
-    public CreditCard saveCard(CreditCard creditCard) {
-       return (validateCard(String.valueOf(creditCard.getCreditCardNumber()))) ?  cardRepository.save(creditCard) :  null;
+    public CreditCard saveCard(CreditCard creditCard) throws CpaInternalException {
+        log.info("Service - Get all cards from system: {}", creditCard);
+        if (creditCard != null && validateCard(creditCard.getCreditCardNumber().toString())) {
+            creditCard.setBalance(0L);
+            return cardRepository.save(creditCard);
+        } else {
+            throw new CpaInternalException("Please Enter a valid Credit Card Details");
+        }
     }
 
-   public boolean validateCard(String cardNumber) {
-        int count= 0;
-        for(int i=cardNumber.length()-1; i>=0; i--){
-                int let = cardNumber.charAt(i) - '0';
-            if(i%2==0) {
-                if (let * 2 <= 10) {
-                    count = count + (let * 2);
-                } else {
-                    count = count + (let * 2) % 10 + (let * 2) / 10;
-                }
-            }else{
-                count = count + let;
-            }
+    public boolean validateCard(String cardNumber) {
+        //Luhn 10
+        int count = 0;
+        boolean digit = false;
+
+        for (int i = cardNumber.length() - 1; i >= 0; i--) {
+            int let = cardNumber.charAt(i) - '0';
+            if (digit == true)
+                let = let * 2;
+
+            count += let / 10;
+            count += let % 10;
+            digit = !digit;
+
         }
-        return(count%10 == 0);
+        return (count % 10 == 0);
     }
 
 }
