@@ -6,33 +6,33 @@ Its a full stack application for a credit card provider. It allows you to add ne
 
 ## Description
 
-#Rest Endpoints
-•	"Add" will create a new credit card for a given name, card number, and limit
-o	Card numbers is validated using Luhn 10
-o	New cards start with a £0 balance
-o	Cards not compatible with Luhn 10, return an error
-•	"Get all" returns all cards in the system
+### Rest Endpoints
+*	"Add" will create a new credit card for a given name, card number, and limit
+*	Card numbers is validated using Luhn 10
+*	New cards start with a £0 balance
+*	Cards not compatible with Luhn 10, return an error
+*	"Get all" returns all cards in the system
 
 ## Validation Rules
 
-	All input and output will be JSON
-	Credit card numbers may vary in length, up to 19 characters
-	Credit card numbers will always be numeric
+*	All input and output will be JSON
+*	Credit card numbers may vary in length, up to 19 characters
+*	Credit card numbers will always be numeric
 
 ## Technical specs
 
-	RESTful API using Spring Boot and Maven for dependency management
-	Endpoints use appropriate HTTP Methods and defined payloads with return codes and response structures
-	Junit test cases are written with Mockito
-	In-memory DB h2 to store the information while the API is running, so that it can store the credit card information
+*	RESTful API using Spring Boot and Maven for dependency management
+*	Endpoints use appropriate HTTP Methods and defined payloads with return codes and response structures
+*	Junit test cases are written with Mockito
+*	In-memory DB h2 to store the information while the API is running, so that it can store the credit card information
 
 ## API Swagger Documentation
 
-  http://localhost:8080/swagger-ui.html
+*  http://localhost:8080/swagger-ui.html
 
 ## Postman requests and examples provided(Test API's)
 
- Location: ProjectDir\src\main\resources\CPA.postman_collection.json
+* Location: ProjectDir\src\main\resources\CPA.postman_collection.json
 
 
 
