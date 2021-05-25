@@ -13,7 +13,8 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api")
+@CrossOrigin
 public class CreditCardController {
 
     private final Logger log = LoggerFactory.getLogger(CreditCardController.class);
