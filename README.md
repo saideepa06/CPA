@@ -48,7 +48,7 @@ This will get a copy of the project installed locally. To install all of its dep
 To run the server, run:
 
 ```bash
-./mvnw spring-boot:run
+./mvn spring-boot:run
 ```
 
 To run the client, cd into the `app` folder and run:
