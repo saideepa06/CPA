@@ -34,7 +34,29 @@ Its a full stack application for a credit card provider. It allows you to add ne
 
 * Location: ProjectDir\src\main\resources\CPA.postman_collection.json
 
+## Getting Started
 
+To install CPA application, run the following commands:
+
+```bash
+git clone https://github.com/saideepa06/CPA.git cpa
+cd cpa
+```
+
+This will get a copy of the project installed locally. To install all of its dependencies and start each app, follow the instructions below.
+
+To run the server, run:
+
+```bash
+./mvnw spring-boot:run
+```
+
+To run the client, cd into the `app` folder and run:
+
+```bash
+npm && npm start
+```
+Client Home Page: http://localhost:3000/
 
 
 
