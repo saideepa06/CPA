@@ -2,7 +2,7 @@
 
 ## Credit card processing Application
 
-Its a full stack application for a credit card provider. It allows you to add new credit card accounts and view them as a list
+Its a full stack application for a credit card provider. It allows you to add new valid credit card accounts and enable us to view the all the valid credit cards.
 
 ## Description
 
